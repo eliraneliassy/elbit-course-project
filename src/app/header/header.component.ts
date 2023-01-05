@@ -1,14 +1,17 @@
 import { CartService } from './../cart.service';
-import { Component } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
-
+export class HeaderComponent implements DoCheck {
+  numberOfItemInCart = 0;
   constructor(private cartService: CartService) {}
-  numberOfItemInCart = this.cartService.numberOfItemInCart();
+  ngDoCheck(): void {
+    this.numberOfItemInCart = this.cartService.numberOfItemInCart();
+  }
+  
 
 }

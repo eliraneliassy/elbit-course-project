@@ -9,6 +9,7 @@
     [itemInCart]="true"
     (removeFromCart)="removeFromCartHandler($event)"
     *ngFor="let book of shoppingCart"
+    
   ></app-book>
 </div>
 
@@ -21,6 +22,8 @@
     [itemInCart]="checkIfItemInCart(book)"
     (addToCart)="addToCartHandler($event)"
     (removeFromCart)="removeFromCartHandler($event)"
-    *ngFor="let book of books"
+    *ngFor="let book of books; let i = index"
+    [ngClass]="{'choclate': checkIfItemInCart(book)}"
+    [ngStyle]="{'color': getColor()}"
   ></app-book>
 </div>

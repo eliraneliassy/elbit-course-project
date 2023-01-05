@@ -32,5 +32,9 @@ export class AppComponent {
     return this.cartService.checkIfItemInCart(book);
   }
 
+  getColor(){
+    return 'red';
+  }
+
 
 }

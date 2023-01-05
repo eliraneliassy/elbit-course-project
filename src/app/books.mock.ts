@@ -19,5 +19,6 @@ const book3: Book = {
 };
 
 export const BOOKS_MOCK: Book[] = [
-    book1, book2, book3
+    book1, 
+    book2, book3
 ]
