@@ -1,13 +1,6 @@
 <h1>Hello Elbit</h1>
 
-<div class="book">
-  <div class="title">
-    {{book1.title}}
-  </div>
-  <div class="preview-img">
-    <img [src]="book1.previewImgUrl">
-  </div>
-  <div class="price">
-    {{book1.price}}$
-  </div>
+
+<div class="books">
+  <app-book [book]="book" *ngFor="let book of books"></app-book>  
 </div>
