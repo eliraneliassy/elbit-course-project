@@ -1,10 +1,11 @@
 import { Book } from './book.interface';
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+
 })
 export class AppComponent {
   book1: Book = {
@@ -31,8 +32,25 @@ export class AppComponent {
 
   shoppingCart: Book[] = [];
 
-  addToCart(book: Book) {
+  addToCartHandler(book: Book) {
     this.shoppingCart.push(book);
+  }
+
+  removeFromCartHandler(book: Book) {
+    const index = this.shoppingCart.findIndex(b => b.title === book.title);
+
+    this.shoppingCart.splice(index, 1);
+
+  }
+
+  checkIfItemInCart(book: Book): boolean {
+    const index = this.shoppingCart.findIndex(b => b.title === book.title);
+
+    if (index > -1) {
+      return true;
+    }
+
+    return false;
   }
 
 

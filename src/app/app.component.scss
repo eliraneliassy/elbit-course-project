@@ -1,0 +1,12 @@
+.shopping-cart, .books{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // height: 800px;
+    border: 1px solid black;
+
+    app-book{
+        width: 300px;
+    }
+}
+

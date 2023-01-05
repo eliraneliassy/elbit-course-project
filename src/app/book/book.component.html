@@ -6,5 +6,10 @@
     <img [src]="book?.previewImgUrl" />
   </div>
   <div class="price">{{ book?.price }}$</div>
-  <button (click)="addToCartClicked()">Add To Cart</button>
+  <button (click)="addToCartClicked()" *ngIf="!itemInCart; else elseBlock">
+    Add To Cart
+  </button>
+  <ng-template #elseBlock>
+    <button (click)="RemoveFromCartClicked()">Remove From Cart</button>
+  </ng-template>
 </div>
