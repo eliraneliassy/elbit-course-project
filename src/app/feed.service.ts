@@ -1,7 +1,8 @@
+import { API_MOCK } from './books.api.mock';
 import { Book } from './book.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class FeedService {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('q', term);
 
-    return this.httpClient.get<any>(this.BASE_URL, { params: queryParams })
+    // return this.httpClient.get<any>(this.BASE_URL, { params: queryParams })
+    return of(API_MOCK)
       .pipe(
         map((res: any) => res.items.map((item: any) => (
           {
