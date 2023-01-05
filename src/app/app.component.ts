@@ -1,3 +1,5 @@
+import { CartService } from './cart.service';
+import { BOOKS_MOCK } from './books.mock';
 import { Book } from './book.interface';
 import { Component, ViewEncapsulation } from '@angular/core';
 
@@ -8,49 +10,26 @@ import { Component, ViewEncapsulation } from '@angular/core';
 
 })
 export class AppComponent {
-  book1: Book = {
-    title: 'Harry Potter and the Sorcerer\'s Stone',
-    price: 90.00,
-    previewImgUrl: `https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/5903/9780590353427.jpg`
-  };
+  books: Book[] = BOOKS_MOCK;
 
-  book2: Book = {
-    title: 'The Lord of the Rings',
-    price: 140.00,
-    previewImgUrl: `https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/5440/9780544003415.jpg`
-  };
+  shoppingCart: Book[] = this.cartService.shoppingCart;
 
-  book3: Book = {
-    title: 'Angular Projects : Build modern web apps by exploring Angular 12 with 10 different projects and cutting-edge technologies, 2nd Edition',
-    price: 240.00,
-    previewImgUrl: `https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9781/8002/9781800205260.jpg`
-  };
-
-  books: Book[] = [
-    this.book1, this.book2, this.book3
-  ]
-
-  shoppingCart: Book[] = [];
+  
+  constructor(private cartService: CartService) {
+    
+  }
 
   addToCartHandler(book: Book) {
-    this.shoppingCart.push(book);
+    this.cartService.addToCart(book);
   }
 
   removeFromCartHandler(book: Book) {
-    const index = this.shoppingCart.findIndex(b => b.title === book.title);
-
-    this.shoppingCart.splice(index, 1);
+    this.cartService.removeFromCart(book);
 
   }
 
   checkIfItemInCart(book: Book): boolean {
-    const index = this.shoppingCart.findIndex(b => b.title === book.title);
-
-    if (index > -1) {
-      return true;
-    }
-
-    return false;
+    return this.cartService.checkIfItemInCart(book);
   }
 
 
