@@ -1,3 +1,4 @@
+import { Book } from './book.interface';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'elbit-course-project';
+  book1: Book = {
+    title: 'Harry Potter and the Sorcerer\'s Stone',
+    price: 90.00,
+    previewImgUrl: `https://d1w7fb2mkkr3kw.cloudfront.net/assets/images/book/lrg/9780/5903/9780590353427.jpg`
+  };
 }
