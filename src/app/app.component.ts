@@ -28,6 +28,12 @@ export class AppComponent {
   books: Book[] = [
     this.book1, this.book2, this.book3
   ]
-  
+
+  shoppingCart: Book[] = [];
+
+  addToCart(book: Book) {
+    this.shoppingCart.push(book);
+  }
+
 
 }

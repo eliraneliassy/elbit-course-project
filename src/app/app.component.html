@@ -1,6 +1,19 @@
 <h1>Hello Elbit</h1>
+<hr>
 
+<h2>
+  My shoppoing cart:
+</h2>
+
+<div class="shopping-cart">
+  <app-book [book]="book" *ngFor="let book of shoppingCart"></app-book>  
+</div>
+
+<hr>
+<h2>
+  Feed:
+</h2>
 
 <div class="books">
-  <app-book [book]="book" *ngFor="let book of books"></app-book>  
+  <app-book [book]="book" (addToCart)="addToCart($event)" *ngFor="let book of books"></app-book>  
 </div>
