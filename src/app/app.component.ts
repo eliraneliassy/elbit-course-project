@@ -1,7 +1,8 @@
+import { FeedService } from './feed.service';
 import { CartService } from './cart.service';
 import { BOOKS_MOCK } from './books.mock';
 import { Book } from './book.interface';
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +10,20 @@ import { Component, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   books: Book[] = BOOKS_MOCK;
 
   shoppingCart: Book[] = this.cartService.shoppingCart;
 
   
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService,
+    private feedService: FeedService) {
     
+  }
+  ngOnInit(): void {
+    this.feedService.getBooks('Angular').subscribe((res: Book[]) => {
+      this.books = res;
+    });
   }
 
   addToCartHandler(book: Book) {
