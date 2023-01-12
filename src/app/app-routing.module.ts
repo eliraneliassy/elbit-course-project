@@ -1,3 +1,4 @@
+import { ProductPageResolver } from './product-page.resolver';
 import { AuthGuard } from './auth.guard';
 import { LoginComponent } from './login/login.component';
 import { ProductPageComponent } from './product-page/product-page.component';
@@ -28,7 +29,8 @@ const routes: Routes = [
   },
   {
     path: 'product/:id',
-    component: ProductPageComponent
+    component: ProductPageComponent,
+    resolve: [ProductPageResolver]
   }
 ];
 
