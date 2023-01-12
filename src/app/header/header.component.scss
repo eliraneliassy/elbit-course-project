@@ -1,5 +1,17 @@
-.container{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .links {
+    a {
+      margin-right: 15px;
+
+      &.active{
+        background-color: aqua;
+      }
+    }
+  }
 }
+
+
