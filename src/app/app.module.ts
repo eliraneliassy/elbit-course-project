@@ -6,12 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BookComponent } from './book/book.component';
 import { HeaderComponent } from './header/header.component';
+import { FeedComponent } from './feed/feed.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BookComponent,
-    HeaderComponent
+    HeaderComponent,
+    FeedComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

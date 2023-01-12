@@ -1,29 +1,7 @@
 <app-header></app-header>
 <hr />
 
-<h2>My shoppoing cart:</h2>
+<router-outlet></router-outlet>
 
-<div class="shopping-cart">
-  <app-book
-    [book]="book"
-    [itemInCart]="true"
-    (removeFromCart)="removeFromCartHandler($event)"
-    *ngFor="let book of shoppingCart"
-    
-  ></app-book>
-</div>
 
-<hr />
-<h2>Feed:</h2>
 
-<div class="books">
-  <app-book
-    [book]="book"
-    [itemInCart]="checkIfItemInCart(book)"
-    (addToCart)="addToCartHandler($event)"
-    (removeFromCart)="removeFromCartHandler($event)"
-    *ngFor="let book of books; let i = index"
-    [ngClass]="{'choclate': checkIfItemInCart(book)}"
-    [ngStyle]="{'color': getColor()}"
-  ></app-book>
-</div>

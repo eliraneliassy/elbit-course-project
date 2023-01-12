@@ -1,0 +1,18 @@
+.shopping-cart, .books{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // height: 800px;
+    border: 1px solid black;
+    flex-wrap: wrap;
+
+
+    app-book{
+        width: 300px;
+    }
+}
+
+.choclate{
+    background-color: chocolate;
+}
+

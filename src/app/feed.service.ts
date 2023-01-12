@@ -17,8 +17,8 @@ export class FeedService {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('q', term);
 
-    // return this.httpClient.get<any>(this.BASE_URL, { params: queryParams })
-    return of(API_MOCK)
+    return this.httpClient.get<any>(this.BASE_URL, { params: queryParams })
+    // return of(API_MOCK)
       .pipe(
         map((res: any) => res.items.map((item: any) => (
           {
