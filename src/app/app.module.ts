@@ -8,6 +8,7 @@ import { BookComponent } from './book/book.component';
 import { HeaderComponent } from './header/header.component';
 import { FeedComponent } from './feed/feed.component';
 import { CartComponent } from './cart/cart.component';
+import { ProductPageComponent } from './product-page/product-page.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { CartComponent } from './cart/cart.component';
     BookComponent,
     HeaderComponent,
     FeedComponent,
-    CartComponent
+    CartComponent,
+    ProductPageComponent
   ],
   imports: [
     BrowserModule,

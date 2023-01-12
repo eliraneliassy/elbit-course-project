@@ -22,6 +22,7 @@ export class FeedService {
       .pipe(
         map((res: any) => res.items.map((item: any) => (
           {
+            id: item.id,
             title: item.volumeInfo.title,
             price: item.volumeInfo.pageCount,
             previewImgUrl: item.volumeInfo.imageLinks.thumbnail

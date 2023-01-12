@@ -1,3 +1,4 @@
+import { ProductPageComponent } from './product-page/product-page.component';
 import { CartComponent } from './cart/cart.component';
 import { FeedComponent } from './feed/feed.component';
 import { NgModule } from '@angular/core';
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent
+  },
+  {
+    path: 'product/:id',
+    component: ProductPageComponent
   }
 ];
 
