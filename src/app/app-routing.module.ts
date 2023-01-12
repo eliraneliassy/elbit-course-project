@@ -1,3 +1,5 @@
+import { AuthGuard } from './auth.guard';
+import { LoginComponent } from './login/login.component';
 import { ProductPageComponent } from './product-page/product-page.component';
 import { CartComponent } from './cart/cart.component';
 import { FeedComponent } from './feed/feed.component';
@@ -7,16 +9,22 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'feed',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
     path: 'feed',
-    component: FeedComponent
+    component: FeedComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'cart',
-    component: CartComponent
+    component: CartComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'product/:id',
