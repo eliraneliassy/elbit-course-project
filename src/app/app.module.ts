@@ -10,7 +10,8 @@ import { FeedComponent } from './feed/feed.component';
 import { CartComponent } from './cart/cart.component';
 import { ProductPageComponent } from './product-page/product-page.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +21,15 @@ import { FormsModule } from '@angular/forms';
     FeedComponent,
     CartComponent,
     ProductPageComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

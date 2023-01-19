@@ -1,0 +1,32 @@
+<form [formGroup]="form">
+  <div>
+    <div class="form-control">
+      <span>Name:</span>
+      <input formControlName="name" />
+      <small style="color: red" 
+      *ngIf="!form.get('name')?.valid && form.get('name')?.touched">
+        Name is required
+    </small>
+    </div>
+    <div class="form-control">
+      <span>Email:</span>
+      <input formControlName="email" />
+      <small style="color: red" 
+      *ngIf="!form.get('email')?.valid && form.get('email')?.touched && form.get('email')?.hasError('required')">
+        Email is required
+    </small>
+    <small style="color: red" 
+      *ngIf="showEmailError()">
+        Email must be a valid email format
+    </small>
+    </div>
+
+    <div class="form-control">
+      <span>Password:</span>
+      <input formControlName="password" />
+    </div>
+    <div class="form-control">
+      <button type="submit" [disabled]="!form.valid" (click)="register()">Register</button>
+    </div>
+  </div>
+</form>
