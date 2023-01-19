@@ -8,8 +8,8 @@ export class AuthService {
   user: string | null = null;
   constructor(private router: Router) { }
 
-  login() {
-    this.user = 'Eliran';
+  login(userEmail: string): void {
+    this.user = userEmail;
     this.router.navigateByUrl('/feed');
   }
 

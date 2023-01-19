@@ -9,11 +9,10 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent {
   constructor(private authService: AuthService) { }
-  login() {
-    this.authService.login();
-  }
+  
 
   sumbit(form: NgForm) {
     console.log(form);
+    this.authService.login(form.value.email);
   }
 }

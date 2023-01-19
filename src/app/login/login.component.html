@@ -3,21 +3,35 @@
     <div class="form-control">
       <span>Email:</span>
       <input
-      ngModel
-      type="email"
-      required
-      email
-      name="email"
-      #email="ngModel" />
+        ngModel
+        type="email"
+        required
+        email
+        name="email"
+        #email="ngModel"
+      />
+      <small style="color: red"
+      *ngIf="!email.valid && email.touched && email.hasError('required')" 
+      > Email is required </small>
+      <small style="color: red"
+      *ngIf="!email.valid && email.touched && email.hasError('email')" 
+      > Email must be a valid email format </small>
     </div>
+
     <div class="form-control">
       <span>Password:</span>
-      <input 
-      ngModel
-      type="password"
-      required
-      name="password"
-      #password="ngModel"/>
+      <input
+        ngModel
+        type="password"
+        required
+        name="password"
+        #password="ngModel"
+      />
+
+      <small style="color: red"
+      *ngIf="!password.valid && password.touched && password.hasError('required')" 
+      > Email is required </small>
+      
     </div>
     <div class="form-control">
       <button type="submit" [disabled]="!form.valid">Login</button>
