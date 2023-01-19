@@ -1,5 +1,6 @@
 import { AuthService } from './../auth.service';
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,5 +11,9 @@ export class LoginComponent {
   constructor(private authService: AuthService) { }
   login() {
     this.authService.login();
+  }
+
+  sumbit(form: NgForm) {
+    console.log(form);
   }
 }
