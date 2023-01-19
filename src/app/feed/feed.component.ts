@@ -1,25 +1,46 @@
 import { CartService } from './../cart.service';
 import { FeedService } from './../feed.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Book } from '../book.interface';
+import { debounceTime, distinctUntilChanged, Subject, Subscription, switchMap, timer } from 'rxjs';
 
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss']
 })
-export class FeedComponent implements OnInit {
+export class FeedComponent implements OnInit, OnDestroy {
   books: Book[] = [];
+
+  search$ = new Subject<string>();
+  subscription: Subscription = new Subscription();
 
   constructor(
     private feedService: FeedService,
     private cartService: CartService) { }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   ngOnInit(): void {
-    this.feedService.getBooks('Harry potter')
-      .subscribe((res: Book[]) => {
-        this.books = res;
-      });
+    // this.feedService.getBooks('Harry potter')
+    //   .subscribe((res: Book[]) => {
+    //     this.books = res;
+    //   });
+
+    this.search$
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap((term) => this.feedService.getBooks(term))
+      )
+
+      .subscribe(
+        (res: Book[]) => this.books = res
+      )
+
+      this.subscription = timer(0, 1000).subscribe(console.log)
+
   }
 
   addToCartHandler(book: Book) {
@@ -37,5 +58,10 @@ export class FeedComponent implements OnInit {
 
   getColor() {
     return 'red';
+  }
+
+  doSearch(target: any) {
+    // console.log(target.value);
+    this.search$.next(target.value);
   }
 }

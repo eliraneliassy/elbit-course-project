@@ -1,5 +1,8 @@
 <h2>Feed:</h2>
 
+<span>Search books:</span>
+<input placeholder="start type to search..." (input)="doSearch($event.target)"> 
+
 <div class="books">
   <app-book
     *ngFor="let book of books; let i = index"
