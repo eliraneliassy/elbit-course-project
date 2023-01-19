@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Book } from '../book.interface';
 import { CartService } from '../cart.service';
 
@@ -7,13 +7,20 @@ import { CartService } from '../cart.service';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartComponent {
-  shoppingCart: Book[] = this.cartService.shoppingCart;
+export class CartComponent implements OnInit {
+  shoppingCart: Book[] = []
+  //= this.cartService.shoppingCart;
 
 
   constructor(
     private cartService: CartService) {
 
+  }
+  ngOnInit(): void {
+    this.cartService.shoppingCart.subscribe((cart) => {
+      console.log('cart changed');
+      this.shoppingCart = cart
+    })
   }
 
   removeFromCartHandler(book: Book) {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { foriddenNameValidator } from '../validators/validators';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class RegisterComponent implements OnInit {
 
   form: FormGroup = this.fb.group({
-    name: this.fb.control(null, { validators: [Validators.required] }),
+    name: this.fb.control(null, { validators: [Validators.required, foriddenNameValidator(/eliran/)] }),
     email: this.fb.control(null, { validators: [Validators.required, Validators.email] }),
     password: this.fb.control(null, { validators: [Validators.required] })
   });;

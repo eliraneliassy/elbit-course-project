@@ -3,6 +3,7 @@
     <div class="form-control">
       <span>Name:</span>
       <input formControlName="name" />
+      {{form.get('name')?.errors | json}}
       <small style="color: red" 
       *ngIf="!form.get('name')?.valid && form.get('name')?.touched">
         Name is required
