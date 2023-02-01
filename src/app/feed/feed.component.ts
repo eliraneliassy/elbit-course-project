@@ -2,7 +2,7 @@ import { CartService } from './../cart.service';
 import { FeedService } from './../feed.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Book } from '../book.interface';
-import { debounceTime, distinctUntilChanged, Subject, Subscription, switchMap, timer } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Subject, Subscription, switchMap, take, timer } from 'rxjs';
 
 @Component({
   selector: 'app-feed',
@@ -39,7 +39,7 @@ export class FeedComponent implements OnInit, OnDestroy {
         (res: Book[]) => this.books = res
       )
 
-      this.subscription = timer(0, 1000).subscribe(console.log)
+      this.subscription = timer(0, 1000).pipe(take(1)).subscribe(console.log)
 
   }
 

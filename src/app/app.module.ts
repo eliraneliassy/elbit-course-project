@@ -9,9 +9,9 @@ import { HeaderComponent } from './header/header.component';
 import { FeedComponent } from './feed/feed.component';
 import { CartComponent } from './cart/cart.component';
 import { ProductPageComponent } from './product-page/product-page.component';
-import { LoginComponent } from './login/login.component';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RegisterComponent } from './register/register.component';
+
 
 @NgModule({
   declarations: [
@@ -21,15 +21,13 @@ import { RegisterComponent } from './register/register.component';
     FeedComponent,
     CartComponent,
     ProductPageComponent,
-    LoginComponent,
-    RegisterComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
