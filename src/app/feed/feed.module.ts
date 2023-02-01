@@ -9,8 +9,7 @@ import { FeedRoutingModule } from './feed-routing.module';
 
 @NgModule({
   declarations: [
-    FeedComponent,
-    
+    FeedComponent,    
   ],
   imports: [
     CommonModule,

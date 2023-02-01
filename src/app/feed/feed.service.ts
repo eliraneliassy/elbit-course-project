@@ -1,8 +1,8 @@
-import { API_MOCK } from './books.api.mock';
-import { Book } from './book.interface';
+import { API_MOCK } from '../books.api.mock';
+import { Book } from '../book.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { map, Observable, of } from 'rxjs';
+import { map, Observable, of, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,8 @@ import { map, Observable, of } from 'rxjs';
 export class FeedService {
 
   BASE_URL = `https://www.googleapis.com/books/v1/volumes`;
+
+  private currentResults$: BehaviorSubject<Book[]> = new BehaviorSubject<Book[]>([]);
 
   constructor(private httpClient: HttpClient) { }
 
@@ -25,10 +27,18 @@ export class FeedService {
             id: item.id,
             title: item.volumeInfo.title,
             price: item.volumeInfo.pageCount,
-            previewImgUrl: item.volumeInfo.imageLinks.thumbnail
+            previewImgUrl: item.volumeInfo.imageLinks?.thumbnail
           }
-        )))
+        )),
+        )
       );
   }
-}
 
+  getCurrentResult(): Observable<Book[]> {
+    return this.currentResults$.asObservable();
+  }
+
+  setCurrentResult(books: Book[]) {
+    this.currentResults$.next(books);
+  }
+}

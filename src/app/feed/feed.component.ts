@@ -1,13 +1,14 @@
-import { CartService } from './../cart.service';
-import { FeedService } from './../feed.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CartService } from './../cart/cart.service';
+import { FeedService } from './feed.service';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Book } from '../book.interface';
-import { debounceTime, distinctUntilChanged, Subject, Subscription, switchMap, take, timer } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Subject, Subscription, switchMap, take, tap, timer } from 'rxjs';
 
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
-  styleUrls: ['./feed.component.scss']
+  styleUrls: ['./feed.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeedComponent implements OnInit, OnDestroy {
   books: Book[] = [];
@@ -32,7 +33,8 @@ export class FeedComponent implements OnInit, OnDestroy {
       .pipe(
         debounceTime(300),
         distinctUntilChanged(),
-        switchMap((term) => this.feedService.getBooks(term))
+        switchMap((term) => this.feedService.getBooks(term)),
+        tap((books: Book[]) => this.feedService.setCurrentResult(books))
       )
 
       .subscribe(

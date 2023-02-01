@@ -1,4 +1,4 @@
-import { FeedService } from './feed.service';
+import { FeedService } from './feed/feed.service';
 import { Book } from './book.interface';
 import { Injectable } from '@angular/core';
 import {
@@ -16,7 +16,7 @@ export class ProductPageResolver implements Resolve<Book> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Book> {
     const id = route.params['id'];
 
-    return this.feedService.getBooks('Harry potter')
+    return this.feedService.getCurrentResult()
       .pipe(
         map((res: Book[]) => {
           const filteredBooks: Book[] = res.filter(b => b.id === id);

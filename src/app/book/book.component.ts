@@ -1,11 +1,12 @@
 import { Book } from './../book.interface';
-import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation, DoCheck, OnChanges, AfterViewInit, AfterViewChecked, AfterContentInit, OnDestroy, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation, DoCheck, OnChanges, AfterViewInit, AfterViewChecked, AfterContentInit, OnDestroy, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book',
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 
 })
 export class BookComponent {

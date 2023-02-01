@@ -5,7 +5,7 @@ import { ProductPageResolver } from '../product-page.resolver';
 
 const routes: Routes = [
   {
-    path: '/:id',
+    path: ':id',
     component: ProductPageComponent,
     resolve: [ProductPageResolver]
   }

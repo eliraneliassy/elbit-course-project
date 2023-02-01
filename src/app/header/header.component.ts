@@ -1,13 +1,14 @@
 import { Book } from './../book.interface';
 import { AuthService } from './../auth.service';
-import { CartService } from './../cart.service';
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { CartService } from '../cart/cart.service';
+import { ChangeDetectionStrategy, Component, DoCheck, OnInit } from '@angular/core';
 import { TitleStrategy } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit {
   numberOfItemInCart = 0;
