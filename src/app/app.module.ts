@@ -16,12 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    BookComponent,
     HeaderComponent,
-    FeedComponent,
-    CartComponent,
-    ProductPageComponent,
-    
   ],
   imports: [
     BrowserModule,

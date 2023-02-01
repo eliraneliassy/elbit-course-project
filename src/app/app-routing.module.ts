@@ -20,18 +20,19 @@ const routes: Routes = [
   },
   {
     path: 'feed',
-    component: FeedComponent,
-    canActivate: [AuthGuard]
+    loadChildren: () => import('./feed/feed.module').then(m => m.FeedModule)
+    // canActivate: [AuthGuard]
   },
   {
     path: 'cart',
-    component: CartComponent,
-    canActivate: [AuthGuard]
+    
+    loadChildren: () => import('./cart/cart.module').then(m => m.CartModule)
+    // canActivate: [AuthGuard]
   },
   {
-    path: 'product/:id',
-    component: ProductPageComponent,
-    resolve: [ProductPageResolver]
+    path: 'product',
+    loadChildren: () => import('./product-page/product-page.module').then(m => m.ProductPageModule)
+    
   }
 ];
 
