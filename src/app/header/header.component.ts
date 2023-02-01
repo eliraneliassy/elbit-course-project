@@ -1,8 +1,9 @@
+import { CartQuery } from './../cart/cart.query';
+import { AuthQuery } from './../auth/auth.query';
 import { Book } from './../book.interface';
 import { AuthService } from './../auth.service';
 import { CartService } from '../cart/cart.service';
 import { ChangeDetectionStrategy, Component, DoCheck, OnInit } from '@angular/core';
-import { TitleStrategy } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -13,13 +14,13 @@ import { TitleStrategy } from '@angular/router';
 export class HeaderComponent implements OnInit {
   numberOfItemInCart = 0;
   name: string | null = null;
-  constructor(private cartService: CartService, private authService: AuthService) {}
+  constructor(private cartQuery: CartQuery, private authQuery: AuthQuery) {}
   ngOnInit(): void {
-    this.cartService.shoppingCart.subscribe((cart: Book[]) => {
+    this.cartQuery.selectShoppingCart$.subscribe((cart: Book[]) => {
       this.numberOfItemInCart = cart.length
     });
 
-    this.authService.user.subscribe((user) => {
+    this.authQuery.selectUser$.subscribe((user) => {
       this.name = user
     });
   }

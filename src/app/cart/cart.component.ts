@@ -1,3 +1,4 @@
+import { CartQuery } from './cart.query';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Book } from '../book.interface';
 import { CartService } from './cart.service';
@@ -6,7 +7,7 @@ import { CartService } from './cart.service';
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CartComponent implements OnInit {
   shoppingCart: Book[] = []
@@ -14,11 +15,11 @@ export class CartComponent implements OnInit {
 
 
   constructor(
-    private cartService: CartService) {
+    private cartQuery: CartQuery, private cartService: CartService) {
 
   }
   ngOnInit(): void {
-    this.cartService.shoppingCart.subscribe((cart) => {
+    this.cartQuery.selectShoppingCart$.subscribe((cart) => {
       console.log('cart changed');
       this.shoppingCart = cart
     })

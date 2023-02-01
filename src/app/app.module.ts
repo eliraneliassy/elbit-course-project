@@ -11,6 +11,7 @@ import { CartComponent } from './cart/cart.component';
 import { ProductPageComponent } from './product-page/product-page.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 
 
 @NgModule({
@@ -22,6 +23,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    AkitaNgDevtools.forRoot({
+      maxAge: 25
+    })
     
   ],
   providers: [],

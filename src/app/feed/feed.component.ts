@@ -8,7 +8,7 @@ import { debounceTime, distinctUntilChanged, Subject, Subscription, switchMap, t
   selector: 'app-feed',
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeedComponent implements OnInit, OnDestroy {
   books: Book[] = [];
