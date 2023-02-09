@@ -1,6 +1,9 @@
+import { TestComponent } from './../test/test.component';
+import { ProductPageComponent } from './../product-page/product-page.component';
 import { Book } from './../book.interface';
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation, DoCheck, OnChanges, AfterViewInit, AfterViewChecked, AfterContentInit, OnDestroy, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-book',
@@ -16,7 +19,7 @@ export class BookComponent {
   @Output() addToCart: EventEmitter<Book> = new EventEmitter<Book>();
   @Output() removeFromCart: EventEmitter<Book> = new EventEmitter<Book>();
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private dialog: MatDialog) { }
 
 
   addToCartClicked() {
@@ -28,6 +31,7 @@ export class BookComponent {
   }
 
   navigateToProduct() {
-    this.router.navigateByUrl(`/product/${this.book?.id}`)
+    this.dialog.open(ProductPageComponent, {data: this.book})
+    // this.router.navigateByUrl(`/product/${this.book?.id}`)
   }
 }

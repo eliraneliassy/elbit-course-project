@@ -15,7 +15,6 @@ export class CartService {
 
   addToCart(book: Book) {
     // this.shoppingCart.push(book);
-    debugger
     const currentCart = [...this.cartQuery.getValue().shoppingCart];
     currentCart.push(book);
 

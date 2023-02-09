@@ -1,3 +1,5 @@
+import { BookModule } from './book/book.module';
+import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,12 +12,14 @@ import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { TestComponent } from './test/test.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +30,9 @@ import { MatIconModule } from '@angular/material/icon';
     }),
     BrowserAnimationsModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule,
+    BookModule
 
   ],
   providers: [],
