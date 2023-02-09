@@ -1,4 +1,4 @@
-<div class="container">
+<mat-toolbar color="primary" class="container">
   <h1>Hello Elbit</h1>
 
   <div class="links">
@@ -8,7 +8,8 @@
   </div>
 
   <div *ngIf="name$ | async as name">
-    <span>Hello, {{name}}</span>
+    <span>Hello, {{ name }}</span>
     <div>Number of items in cart: {{ numberOfItemInCart$ | async }}</div>
   </div>
-</div>
+</mat-toolbar>
+

@@ -3,11 +3,5 @@ form{
     justify-content: center;
     align-items: center;
 
-    input.ng-touched.ng-invalid{
-        border: 5px solid red;
-    }
-
-    input.ng-touched.ng-valid{
-        border: 5px solid green;
-    }
+    
 }

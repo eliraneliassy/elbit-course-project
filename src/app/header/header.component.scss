@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 25px;
 
   .links {
     a {
@@ -14,4 +15,8 @@
   }
 }
 
+
+mat-toolbar{
+  background-color: aquamarine;
+}
 
