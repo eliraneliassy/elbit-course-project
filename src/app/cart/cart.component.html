@@ -5,6 +5,6 @@
     [book]="book"
     [itemInCart]="true"
     (removeFromCart)="removeFromCartHandler($event)"
-    *ngFor="let book of shoppingCart"
+    *ngFor="let book of shoppingCart$ | async"
   ></app-book>
 </div>

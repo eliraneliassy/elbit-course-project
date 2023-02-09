@@ -2,7 +2,7 @@ import { FeedService } from '../feed/feed.service';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Data, Params } from '@angular/router';
 import { Book } from '../book.interface';
-import { switchMap, map } from 'rxjs';
+import { switchMap, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-page',
@@ -12,13 +12,15 @@ import { switchMap, map } from 'rxjs';
 })
 export class ProductPageComponent implements OnInit {
 
-  book?: Book;
+  book$?: Observable<Book>;
 
   constructor(private route: ActivatedRoute) { }
   ngOnInit(): void {
-    this.route.data.subscribe((data: Data) => {
-      this.book = data[0];
-    })
+    this.book$ = this.route.data
+      .pipe(
+        map(((data: Data) => data[0])
+        ))
+
   }
 
 

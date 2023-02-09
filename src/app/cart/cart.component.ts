@@ -2,15 +2,16 @@ import { CartQuery } from './cart.query';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Book } from '../book.interface';
 import { CartService } from './cart.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CartComponent implements OnInit {
-  shoppingCart: Book[] = []
+  shoppingCart$: Observable<Book[]>;
   //= this.cartService.shoppingCart;
 
 
@@ -19,10 +20,7 @@ export class CartComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    this.cartQuery.selectShoppingCart$.subscribe((cart) => {
-      console.log('cart changed');
-      this.shoppingCart = cart
-    })
+    this.shoppingCart$ = this.cartQuery.selectShoppingCart$
   }
 
   removeFromCartHandler(book: Book) {

@@ -1,8 +1,8 @@
 import { CartService } from './../cart/cart.service';
 import { FeedService } from './feed.service';
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Book } from '../book.interface';
-import { debounceTime, distinctUntilChanged, Subject, Subscription, switchMap, take, tap, timer } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Observable, Subject, Subscription, switchMap, take, tap, timer } from 'rxjs';
 
 @Component({
   selector: 'app-feed',
@@ -11,14 +11,15 @@ import { debounceTime, distinctUntilChanged, Subject, Subscription, switchMap, t
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FeedComponent implements OnInit, OnDestroy {
-  books: Book[] = [];
+  books$: Observable<Book[]>
 
   search$ = new Subject<string>();
   subscription: Subscription = new Subscription();
 
   constructor(
     private feedService: FeedService,
-    private cartService: CartService) { }
+    private cartService: CartService,
+    private cdr: ChangeDetectorRef) { }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
@@ -29,7 +30,7 @@ export class FeedComponent implements OnInit, OnDestroy {
     //     this.books = res;
     //   });
 
-    this.search$
+    this.books$ = this.search$
       .pipe(
         debounceTime(300),
         distinctUntilChanged(),
@@ -37,11 +38,14 @@ export class FeedComponent implements OnInit, OnDestroy {
         tap((books: Book[]) => this.feedService.setCurrentResult(books))
       )
 
-      .subscribe(
-        (res: Book[]) => this.books = res
-      )
+      // .subscribe(
+      //   (res: Book[]) => {
+      //     this.books = res;
+      //     this.cdr.markForCheck();
+      //   }
+      // )
 
-      this.subscription = timer(0, 1000).pipe(take(1)).subscribe(console.log)
+    this.subscription = timer(0, 1000).pipe(take(1)).subscribe(console.log)
 
   }
 

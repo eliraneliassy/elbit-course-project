@@ -1,3 +1,4 @@
+import { Observable, map } from 'rxjs';
 import { CartQuery } from './../cart/cart.query';
 import { AuthQuery } from './../auth/auth.query';
 import { Book } from './../book.interface';
@@ -12,22 +13,22 @@ import { ChangeDetectionStrategy, Component, DoCheck, OnInit } from '@angular/co
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit {
-  numberOfItemInCart = 0;
-  name: string | null = null;
-  constructor(private cartQuery: CartQuery, private authQuery: AuthQuery) {}
+  numberOfItemInCart$: Observable<number>;
+  name$: Observable<string | null>;
+  constructor(private cartQuery: CartQuery, private authQuery: AuthQuery) { }
   ngOnInit(): void {
-    this.cartQuery.selectShoppingCart$.subscribe((cart: Book[]) => {
-      this.numberOfItemInCart = cart.length
-    });
+    this.numberOfItemInCart$ = this.cartQuery.selectShoppingCart$
+      .pipe(
+        map((shoppingCart: Book[]) => shoppingCart.length)
+      )
 
-    this.authQuery.selectUser$.subscribe((user) => {
-      this.name = user
-    });
+
+    this.name$ = this.authQuery.selectUser$
   }
   // ngDoCheck(): void {
   //   this.numberOfItemInCart = this.cartService.numberOfItemInCart();
   //   this.name = this.authService.user;
   // }
-  
+
 
 }
